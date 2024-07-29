@@ -108,3 +108,26 @@ mysql> select * from AddressBook;
 |  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |
 +----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
 3 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+UC6 : Retrieve persons belonging using state or city
+
+mysql> SELECT * FROM AddressBook
+    -> WHERE city = 'Mumbai';
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+
+| id | first_name | last_name | address               | city   | state       | zip    | phone_number | email                      |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur | Mumbai | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AddressBook
+    -> WHERE state = 'Maharashtra';
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+| id | first_name | last_name | address                  | city      | state       | zip    | phone_number | email                      |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur    | Mumbai    | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |
+|  2 | Nitish     | Prajapati | Sector 21                | Ulve      | Maharashtra | 410216 | 1234567890   | nitishprajapati@gmail.com  |
+|  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+3 rows in set (0.00 sec)
