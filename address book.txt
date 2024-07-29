@@ -76,3 +76,18 @@ mysql> select * from AddressBook;
 |  4 | Anjali     | Patel     | 23 Marine Drive          | Mumbai    | Maharashtra | 400020 | 02267890123  | anjali.patel@example.com   |
 +----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
 4 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+UC4 : Edit existing contact using person name
+
+mysql> UPDATE AddressBook
+    -> SET email = 'anjalipatel@gmail.com'
+    -> WHERE first_name = 'Anjali' AND last_name = 'Patel';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AddressBook
+    -> SET phone_number = '1234567890'
+    -> WHERE first_name = 'Nitish' AND last_name = 'Prajapati';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
