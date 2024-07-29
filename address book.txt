@@ -91,3 +91,20 @@ mysql> UPDATE AddressBook
     -> WHERE first_name = 'Nitish' AND last_name = 'Prajapati';
 Query OK, 1 row affected (0.01 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
+
+----------------------------------------------------------------------------------------
+UC5 : Delete a persons contact using persons name
+
+mysql> DELETE FROM AddressBook
+    -> WHERE first_name = 'Anjali' AND last_name = 'Patel';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from AddressBook;
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+| id | first_name | last_name | address                  | city      | state       | zip    | phone_number | email                      |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur    | Mumbai    | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |
+|  2 | Nitish     | Prajapati | Sector 21                | Ulve      | Maharashtra | 410216 | 1234567890   | nitishprajapati@gmail.com  |
+|  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+3 rows in set (0.00 sec)
