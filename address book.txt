@@ -131,3 +131,29 @@ mysql> SELECT * FROM AddressBook
 |  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |
 +----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
 3 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+UC7 : Group by city or state
+
+
+mysql> SELECT city, COUNT(*) AS number_of_contacts
+    -> FROM AddressBook
+    -> GROUP BY city;
++-----------+--------------------+
+| city      | number_of_contacts |
++-----------+--------------------+
+| Mumbai    |                  1 |
+| Ulve      |                  1 |
+| Dombivali |                  1 |
++-----------+--------------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT state, COUNT(*) AS number_of_contacts
+    -> FROM AddressBook
+    -> GROUP BY state;
++-------------+--------------------+
+| state       | number_of_contacts |
++-------------+--------------------+
+| Maharashtra |                  3 |
++-------------+--------------------+
+1 row in set (0.00 sec)
