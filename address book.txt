@@ -50,3 +50,29 @@ mysql> describe AddressBook;
 | email        | varchar(20)  | YES  |     | NULL    |                |
 +--------------+--------------+------+-----+---------+----------------+
 9 rows in set (0.02 sec)
+
+----------------------------------------------------------------------------------------
+UC3 : Insert new contacts to address book
+
+mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip, phone_number, email)
+    -> VALUES ('Harshal', 'Gotarne', 'Anik Village, Chembur', 'Mumbai', 'Maharashtra', '400074', '8433878127', 'harshalgotarne25@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip, phone_number, email)
+    -> VALUES
+    -> ('Nitish', 'Prajapati', 'Sector 21', 'Ulve', 'Maharashtra', '410216', '7652079588', 'nitishprajapati@gmail.com'),
+    -> ('Gaurav', 'Dhande', 'Jay ashtavinyak building', 'Dombivali', 'Maharashtra', '421202', '7977139767', 'gauravdhande@gmail.com'),
+    -> ('Anjali', 'Patel', '23 Marine Drive', 'Mumbai', 'Maharashtra', '400020', '02267890123', 'anjali.patel@example.com');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from AddressBook;
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+| id | first_name | last_name | address                  | city      | state       | zip    | phone_number | email                      |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur    | Mumbai    | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |
+|  2 | Nitish     | Prajapati | Sector 21                | Ulve      | Maharashtra | 410216 | 7652079588   | nitishprajapati@gmail.com  |
+|  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |
+|  4 | Anjali     | Patel     | 23 Marine Drive          | Mumbai    | Maharashtra | 400020 | 02267890123  | anjali.patel@example.com   |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+
+4 rows in set (0.00 sec)
