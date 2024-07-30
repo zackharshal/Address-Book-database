@@ -183,3 +183,65 @@ mysql> SELECT * FROM AddressBook
 |  1 | Harshal    | Gotarne   | Anik Village, Chembur | Mumbai | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |
 +----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+
 2 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+UC9 : Identify each contact with name and type
+
+
+mysql> create table address_book_type
+    -> (
+    -> ID int AUTO_INCREMENT PRIMARY KEY,
+    -> name VARCHAR(30) not null,
+    -> type VARCHAR(30) not null
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into address_book_type (name, type) values
+    -> ('Family Contacts', 'Family'),
+    -> ('Professional Contacts', 'Professional'),
+    -> ('Friends Contact','Friends');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book_type;
++----+-----------------------+--------------+
+| ID | name                  | type         |
++----+-----------------------+--------------+
+|  1 | Family Contacts       | Family       |
+|  2 | Professional Contacts | Professional |
+|  3 | Friends Contact       | Friends      |
++----+-----------------------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table AddressBook
+    -> add column type int(1),
+    -> add foreign key(type) references address_book_type(ID);
+Query OK, 4 rows affected, 1 warning (0.10 sec)
+Records: 4  Duplicates: 0  Warnings: 1
+
+mysql> update AddressBook set type = 1 where first_name = 'Harshal';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update AddressBook set type = 2 where first_name = 'Nitish';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update AddressBook set type = 2 where first_name = 'Gaurav';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update AddressBook set type = 3 where first_name = 'Amruta';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from AddressBook;
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+| id | first_name | last_name | address                  | city      | state       | zip    | phone_number | email                      | type |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur    | Mumbai    | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |    1 |
+|  2 | Nitish     | Prajapati | Sector 21                | Ulve      | Maharashtra | 410216 | 1234567890   | nitishprajapati@gmail.com  |    2 |
+|  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |    2 |
+|  5 | Amruta     | Shinde    | Sion                     | Mumbai    | Maharashtra | 400017 | 1234567890   | amrutashinde@gmail.com     |    3 |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+4 rows in set (0.00 sec)
