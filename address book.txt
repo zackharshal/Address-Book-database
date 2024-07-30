@@ -293,3 +293,95 @@ mysql> select * from AddressBook;
 |  7 | Aaron      | Joseph    | Anik Village             | Mumbai    | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    1 |
 +----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
 6 rows in set (0.00 sec)
+
+----------------------------------------------------------------------------------------
+UC13 : Retrieve queries done especially in UC 6, UC 7, UC 8 and UC 10 are working with new table structure
+
+
+(UC6)
+mysql> SELECT * FROM AddressBook
+    -> WHERE city = 'Mumbai';
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+| id | first_name | last_name | address               | city   | state       | zip    | phone_number | email                      | type |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur | Mumbai | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |    1 |
+|  5 | Amruta     | Shinde    | Sion                  | Mumbai | Maharashtra | 400017 | 1234567890   | amrutashinde@gmail.com     |    3 |
+|  6 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    3 |
+|  7 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    1 |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AddressBook
+    -> WHERE state = 'Maharashtra';
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+| id | first_name | last_name | address                  | city      | state       | zip    | phone_number | email                      | type |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur    | Mumbai    | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |    1 |
+|  2 | Nitish     | Prajapati | Sector 21                | Ulve      | Maharashtra | 410216 | 1234567890   | nitishprajapati@gmail.com  |    2 |
+|  3 | Gaurav     | Dhande    | Jay ashtavinyak building | Dombivali | Maharashtra | 421202 | 7977139767   | gauravdhande@gmail.com     |    2 |
+|  5 | Amruta     | Shinde    | Sion                     | Mumbai    | Maharashtra | 400017 | 1234567890   | amrutashinde@gmail.com     |    3 |
+|  6 | Aaron      | Joseph    | Anik Village             | Mumbai    | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    3 |
+|  7 | Aaron      | Joseph    | Anik Village             | Mumbai    | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    1 |
++----+------------+-----------+--------------------------+-----------+-------------+--------+--------------+----------------------------+------+
+6 rows in set (0.00 sec)
+
+(UC7)
+mysql> SELECT city, COUNT(*) AS number_of_contacts
+    -> from AddressBook
+    -> group by city;
++-----------+--------------------+
+| city      | number_of_contacts |
++-----------+--------------------+
+| Mumbai    |                  4 |
+| Ulve      |                  1 |
+| Dombivali |                  1 |
++-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT state, COUNT(*) AS number_of_contacts
+    -> from AddressBook
+    -> group by state;
++-------------+--------------------+
+| state       | number_of_contacts |
++-------------+--------------------+
+| Maharashtra |                  6 |
++-------------+--------------------+
+1 row in set (0.00 sec)
+
+(UC8)
+mysql> select * from AddressBook
+    -> where city = 'Mumbai'
+    -> order by first_name ASC, last_name ASC;
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+| id | first_name | last_name | address               | city   | state       | zip    | phone_number | email                      | type |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+|  6 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    3 |
+|  7 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    1 |
+|  5 | Amruta     | Shinde    | Sion                  | Mumbai | Maharashtra | 400017 | 1234567890   | amrutashinde@gmail.com     |    3 |
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur | Mumbai | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |    1 |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from AddressBook
+    -> where city = 'Mumbai'
+    -> order by last_name ASC, first_name ASC;
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+| id | first_name | last_name | address               | city   | state       | zip    | phone_number | email                      | type |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+|  1 | Harshal    | Gotarne   | Anik Village, Chembur | Mumbai | Maharashtra | 400074 | 8433878127   | harshalgotarne25@gmail.com |    1 |
+|  6 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    3 |
+|  7 | Aaron      | Joseph    | Anik Village          | Mumbai | Maharashtra | 400074 | 9167328904   | aaronjoseph@gmail.com      |    1 |
+|  5 | Amruta     | Shinde    | Sion                  | Mumbai | Maharashtra | 400017 | 1234567890   | amrutashinde@gmail.com     |    3 |
++----+------------+-----------+-----------------------+--------+-------------+--------+--------------+----------------------------+------+
+4 rows in set (0.00 sec)
+
+(UC10)
+mysql> select type, count(type) from AddressBook group by type;
++------+-------------+
+| type | count(type) |
++------+-------------+
+|    1 |           2 |
+|    2 |           2 |
+|    3 |           2 |
++------+-------------+
+3 rows in set (0.00 sec)
